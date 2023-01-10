@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "100804636053",
+    "project_id": "repo-d3abc",
+    "storage_bucket": "repo-d3abc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100804636053:android:31a4eea660d38a1ee1da9c",
+        "android_client_info": {
+          "package_name": "com.abhi.repo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100804636053-79cjocbe5m5plk7g028r4bseagjpq3ce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL5Nw_-OzxKFy6rsVQWSEkOYXsASByObQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100804636053-79cjocbe5m5plk7g028r4bseagjpq3ce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
