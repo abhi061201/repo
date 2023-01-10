@@ -6,11 +6,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:repo/Screens/dashboard.dart';
 import 'package:repo/auth/login.dart';
+import 'package:repo/storage/post.dart';
 
 class Utils {
   FirebaseAuth auth = FirebaseAuth.instance;
   Reference ref = FirebaseStorage.instance.ref();
   Fluttertoast toastmsg = Fluttertoast();
+  bool islogin= false;
+
+  void setLogin()
+  {
+    islogin= false;
+  }
   Login(String email, String password) {
     var user = auth
         .signInWithEmailAndPassword(
@@ -21,7 +28,7 @@ class Utils {
       Fluttertoast.showToast(
         msg: 'User Logged In Successfully',
       );
-      Get.to(Dashboard());
+      Get.to(PostScreen());
     }).onError((error, stackTrace) {
       Fluttertoast.showToast(
         msg: 'User Logged In failed',
