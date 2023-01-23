@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:repo/Screens/dashboard.dart';
 import 'package:repo/auth/login.dart';
 import 'package:repo/auth/signup.dart';
+import 'package:repo/utils/utils.dart';
+import 'storage/post.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-    home: LoginScreen(),
+
+    home:islogin==false?LoginScreen():PostScreen(),
     );
   }
 }

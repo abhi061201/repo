@@ -3,18 +3,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repo/Screens/dashboard.dart';
+import 'package:repo/auth/forgotpassword.dart';
+import 'package:repo/auth/phone_number_auth.dart';
 import 'package:repo/auth/signup.dart';
 import 'package:repo/utils/utils.dart';
 
-
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  FirebaseAuth auth= FirebaseAuth.instance;
-  Utils _util= Utils();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  Utils _util = Utils();
   @override
   Widget build(BuildContext context) {
     TextEditingController emailcontroller = TextEditingController();
     TextEditingController passcontroller = TextEditingController();
+    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -80,10 +82,36 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
-            TextButton(onPressed: (){
-              Get.to(SignupScreen());
-            }, child: Text('Did\'n have Account SignUp' ,),)
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              onPressed: () {
+                Get.to(SignupScreen());
+              },
+              child: Text(
+                'Did\'n have Account SignUp',
+              ),
+            ),
+            
+            TextButton(
+              onPressed: () {
+                Get.to(ForgotPasswordScreen());
+              },
+              child: Text(
+                'Forgot Password',
+              ),
+            ),
+           
+            
+            TextButton(
+              onPressed: () {
+                Get.to(phoneNumberLogin());
+              },
+              child: Text(
+                'Login with phone number',
+              ),
+            ),
           ],
         ),
       ),

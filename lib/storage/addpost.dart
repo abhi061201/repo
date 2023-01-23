@@ -42,19 +42,21 @@ class _AddPostScreenState extends State<AddPostScreen> {
           ),
           ElevatedButton(
             onPressed: () {
-              databaseRef
-                  .child(DateTime.now().millisecondsSinceEpoch.toString())
-                  .set({
-                    'id': DateTime.now().millisecondsSinceEpoch.toString(),
-                    'name': 'Ram',
-                    'data': postcontroller.text.toString()
-                  })
-                  .then((value) {
-                    Fluttertoast.showToast(msg: 'Post Added Successfully');
-                  })
-                  .onError((error, stackTrace) {
-                    Fluttertoast.showToast(msg: 'Failed $error');
-                  });
+              if (postcontroller.text.isEmpty) {
+                Fluttertoast.showToast(msg: 'Please write something');
+              } else {
+                databaseRef
+                    .child(DateTime.now().millisecondsSinceEpoch.toString())
+                    .set({
+                  'id': DateTime.now().millisecondsSinceEpoch.toString(),
+                  'name': 'Ram',
+                  'data': postcontroller.text.toString()
+                }).then((value) {
+                  Fluttertoast.showToast(msg: 'Post Added Successfully');
+                }).onError((error, stackTrace) {
+                  Fluttertoast.showToast(msg: 'Failed $error');
+                });
+              }
             },
             child: Text(
               'Add Post',
