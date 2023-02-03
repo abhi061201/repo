@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:repo/Screens/HomeScreen.dart';
 import 'package:repo/auth/login.dart';
 import 'package:repo/storage/Postdetail.dart';
 import 'package:repo/storage/addpost.dart';
@@ -17,7 +18,8 @@ class PostScreen extends StatelessWidget {
     Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(AddPostScreen());
+          // Get.to(AddPostScreen());
+          Get.to(HomeScreen());
         },
         child: Icon(Icons.add_outlined),
       ),
@@ -55,6 +57,7 @@ class PostScreen extends StatelessWidget {
                 } else {
                   return ListView.builder(
                     itemCount: mp.length,
+                    
                     itemBuilder: (context, index) {
                       return ListTile(
                         onTap: () {

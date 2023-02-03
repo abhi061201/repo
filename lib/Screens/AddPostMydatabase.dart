@@ -1,22 +1,13 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:repo/utils/utils.dart';
-
-var databaseRef = FirebaseDatabase.instance.ref('Post');
-
-class AddPostScreen extends StatefulWidget {
-  AddPostScreen({super.key});
-
-  @override
-  State<AddPostScreen> createState() => _AddPostScreenState();
-}
-
-class _AddPostScreenState extends State<AddPostScreen> {
-  @override
+import 'package:firebase_database/firebase_database.dart';
+class addPostMydatabaseScreen extends StatelessWidget {
+  
+  final databaseref= FirebaseDatabase.instance.ref('MyDatabase');
+  bool isLiked=false;
   TextEditingController postcontroller = TextEditingController();
   TextEditingController titlecontroller = TextEditingController();
   Widget build(BuildContext context) {
@@ -24,7 +15,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Add Post,',
+          'Add Post MyDatabase',
         ),
       ),
       body: ListView(
@@ -55,16 +46,22 @@ class _AddPostScreenState extends State<AddPostScreen> {
               height: 30,
             ),
             ElevatedButton(
+              
               onPressed: () {
                 if (postcontroller.text.isEmpty) {
                   Fluttertoast.showToast(msg: 'Please write something');
                 } else {
-                  databaseRef
-                      .child(DateTime.now().millisecondsSinceEpoch.toString())
+                  List <String>commentsList=[];
+                  String id= DateTime.now().millisecondsSinceEpoch.toString();
+                  databaseref
+                      .child(id)
                       .set({
-                    'id': DateTime.now().millisecondsSinceEpoch.toString(),
-                    'PostTitle': titlecontroller.toString(),
+                    'id': id,
+                    'PostTitle': titlecontroller.text.toString(),
                     'data': postcontroller.text.toString(),
+                    'likeCount':0.toInt(),
+                    'commentList':commentsList.toList(),
+                    // 'islike':isLiked,
                     
                   }).then((value) {
                     Fluttertoast.showToast(msg: 'Post Added Successfully');
