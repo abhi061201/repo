@@ -16,8 +16,6 @@ class LoginScreen extends StatelessWidget {
   TextEditingController passcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -70,21 +68,29 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    _util.Login(emailcontroller.text, passcontroller.text);
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    decoration: BoxDecoration(),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Login',
-                      ),
+                Obx(() {
+                  return ElevatedButton(
+                    onPressed: () {
+                      _util.loading.value = true;
+
+                      _util.Login(emailcontroller.text, passcontroller.text);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      decoration: BoxDecoration(),
+                      child: _util.loading.value
+                          ? Center(
+                              child: CircularProgressIndicator(color: Colors.white,),
+                            )
+                          : Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Login',
+                              ),
+                            ),
                     ),
-                  ),
-                ),
+                  );
+                }),
                 SizedBox(
                   height: 10,
                 ),

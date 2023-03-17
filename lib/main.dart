@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:repo/Api/Screens/jhoicetask.dart';
+import 'package:repo/Api/api_auth/loginScreen.dart';
 import 'package:repo/Screens/dashboard.dart';
 import 'package:repo/auth/login.dart';
 import 'package:repo/auth/signup.dart';
@@ -19,8 +21,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-
-    home:islogin==false?LoginScreen():PostScreen(),
+    
+    home: ApiLogin(),
+    // home:LoginScreen(),
+    // home: jhoiceTask(),
     );
   }
 }

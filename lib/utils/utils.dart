@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:repo/Api/Screens/ApiDataScreen.dart';
+import 'package:repo/Api/Screens/jhoicetask.dart';
 import 'package:repo/Screens/HomeScreen.dart';
 import 'package:repo/Screens/dashboard.dart';
 import 'package:repo/auth/login.dart';
@@ -13,9 +15,9 @@ import 'package:repo/auth/phone_number_auth.dart';
 import 'package:repo/storage/post.dart';
 
 bool islogin = false;
-var loading = false.obs;
 
 class Utils {
+  RxBool loading = false.obs;
   FirebaseAuth auth = FirebaseAuth.instance;
   Reference ref = FirebaseStorage.instance.ref();
   Fluttertoast toastmsg = Fluttertoast();
@@ -25,20 +27,19 @@ class Utils {
   }
 
   Login(String email, String password) {
-    loading = false.obs;
-
     var user = auth
         .signInWithEmailAndPassword(
       email: email,
       password: password,
     )
         .then((value) {
-      islogin = true;
+      loading.value = false;
       Fluttertoast.showToast(
         msg: 'User Logged In Successfully',
       );
-      Get.to(HomeScreen());
+      Get.to(jhoiceTask());
     }).onError((error, stackTrace) {
+      loading.value=false;
       Fluttertoast.showToast(
         msg: 'User Logged In failed',
       );
@@ -61,7 +62,6 @@ class Utils {
 
   Future<void> addcomment(
       String id, List<String> previous_list, String comment) async {
-    
     previous_list.add(comment);
     databaseref
         .child(id)
@@ -74,9 +74,6 @@ class Utils {
           ),
         );
   }
-
-  
-
 
   Future<void> showComments(String id) async {}
 }
